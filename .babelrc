@@ -1,0 +1,12 @@
+{
+    "presets": ["env", "react", "stage-1"],
+    "sourceMaps": true,
+    "plugins": [
+        [
+            "transform-react-jsx",
+            {
+                "pragma": "React.createElement"
+            }
+        ]
+    ]
+}
