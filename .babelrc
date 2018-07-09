@@ -5,7 +5,7 @@
         [
             "transform-react-jsx",
             {
-                "pragma": "React.createElement"
+                "pragma": "ReactScratch.createElement"
             }
         ]
     ]

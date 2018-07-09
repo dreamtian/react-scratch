@@ -24,6 +24,7 @@ module.exports = {
     'no-new': 0,
     'react/jsx-uses-vars': 2,
     'react/jsx-uses-react': 2,
+    'no-unused-vars': 0
   },
   globals: {
 

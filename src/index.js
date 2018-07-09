@@ -29,44 +29,66 @@
  * 遍历结束后,检查四个变量,对移除剩余的oldCh或添加剩余的newCh
  */
 
-import ReactScratch from './reactScratch'
-const root = document.body
-class NestedApp extends ReactScratch.Component {
+import ReactScratch, {ReactScratchDOM} from './reactScratch'
+function Welcome (props) {
+  return <h1>Hello, {props.name}</h1>
+}
+class App extends ReactScratch.Component {
+  componentWillMount () {
+    console.log('componentWillMount1')
+  }
+  componentDidMount () {
+    console.log('componentDidMount1')
+  }
+  componentWillUpdate () {
+    console.log('componentWillUpdate1')
+  }
+  render () {
+    return (
+      <div>
+        <Welcome name={this.props.name}/>
+      </div>
+    )
+  }
+}
+class Counter extends ReactScratch.Component {
   constructor (props) {
     super(props)
-    this.state = {}
-  }
-  shouldComponentUpdate () {
-    return this.props.counter % 2
-  }
-  render () {
-    return ReactScratch.createElement('h1', { style: { color: '#' + Math.floor(Math.random() * 16777215).toString(16) } }, `The count from parent is: ${this.props.counter}`)
-  }
-}
-
-class App extends ReactScratch.Component {
-  constructor () {
-    super()
     this.state = {
-      counter: 1
+      count: 0
     }
-    // setInterval(() => {
-    //   this.setState({ counter: this.state.counter + 1 })
-    // }, 500)
-    setTimeout(() => {
-      this.setState({ counter: this.state.counter + 1 })
-    }, 500)
   }
-
+  componentWillMount () {
+    console.log('componentWillMount')
+  }
+  componentDidMount () {
+    console.log('componentDidMount')
+  }
+  componentWillUpdate () {
+    console.log('componentWillUpdate')
+  }
+  onClick = () => {
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
   render () {
-    const { counter } = this.state
-    return ReactScratch.createElement('div', { style: { height: `${10 * counter}px`, background: '#' + Math.floor(Math.random() * 16777215).toString(16) } }, [
-      `the counter is ${counter}`,
-      ReactScratch.createElement('h1', { style: { color: '#' + Math.floor(Math.random() * 16777215).toString(16) } }, `${'DUNG! '.repeat(counter)}`),
-      ReactScratch.createElement('p', {className: 'sad'}, '许多人说选择北上广是因为发展好,后来我们才知道他们说的发展,其实就是打工~'),
-      ReactScratch.createElement(NestedApp, {counter: counter})
-    ])
+    const {count} = this.state
+    // console.log(this.onClick)
+    return (
+      <div>
+        {
+          count === 2 ? <p style={{color: 'red', fontSize: 18}} className='test test1' id='ha' data='123'>{count}</p> : <p style={{color: 'green'}} className='test test1' id='ha' data='123'>{count}</p>
+        }
+        <App name={count}/>
+        <Welcome name={count}/>
+        <button onClick={this.onClick}>add</button>
+      </div>
+    )
   }
 }
-
-ReactScratch.mount(ReactScratch.createElement(App), root)
+// console.log(Counter.render())
+ReactScratchDOM.render(
+  <Counter/>,
+  document.getElementById('root')
+)
