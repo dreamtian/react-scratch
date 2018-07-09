@@ -35,13 +35,13 @@ function Welcome (props) {
 }
 class App extends ReactScratch.Component {
   componentWillMount () {
-    console.log('componentWillMount1')
+    console.log('componentWillMount-child')
   }
   componentDidMount () {
-    console.log('componentDidMount1')
+    console.log('componentDidMount-child')
   }
   componentWillUpdate () {
-    console.log('componentWillUpdate1')
+    console.log('componentWillUpdate-child')
   }
   render () {
     return (

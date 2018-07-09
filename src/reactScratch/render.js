@@ -4,9 +4,7 @@ function render (vnode, parentNode) {
     return
   }
   if (vnode.isReactComponent) {
-    const {tag, attrs} = vnode
-    const Component = tag
-    // console.log(vnode)
+    const {attrs} = vnode
     const instance = vnode
     // const instance = new Component(attrs)
     const base = render(instance.render(), parentNode)
